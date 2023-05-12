@@ -15,11 +15,6 @@ export async function getAllByUsername(username) {
     .then(mapTweets);
 }
 
-// return Tweet.findAll({ ...INCLUDE_USER, ...ORDER_DESC,
-//     include: {
-//         ...INCLUDE_USER.include,
-//         where: {username}
-//     }});
 
 export async function getAll(){
     return getTweets()
@@ -29,7 +24,6 @@ export async function getAll(){
     .then(mapTweets);
 }
 
-// return Tweet.findAll({ ...INCLUDE_USER, ...ORDER_DESC});
 export async function getById(id) {
     return getTweets()
     .find({ _id: new ObjectID(id) })
@@ -37,10 +31,7 @@ export async function getById(id) {
     .then(mapOptionalTweet);
 }
 
-// Tweet.findOne({
-//     where: {id}, 
-//     ...INCLUDE_USER
-// });
+
 
 export async function update(id, text){
     return getTweets().findOneAndUpdate(
@@ -55,7 +46,7 @@ export async function update(id, text){
 export async function deleteTweet(id) {
     return getTweets().deleteOne({_id: new ObjectID(id)});
 }
-//
+
 export async function create(text, userId){
     return userRepository.findById(userId)
     .then((user) => getTweets().insertOne({
@@ -75,8 +66,4 @@ function mapOptionalTweet(tweet){
 function mapTweets(tweets){
     return tweets.map(mapOptionalTweet);
 }
-// Tweet.create({text, userId}).then((data) => {
-//     console.log(data);
-//     return data;
-// });
 
