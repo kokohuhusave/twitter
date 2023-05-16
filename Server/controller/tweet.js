@@ -28,10 +28,10 @@ export async function addTweet(req, res) {
 };
 
 export async function createTweet(req, res, next){
-    const {text,userId } = req.body;
-    console.log(userId);
-    console.log(text);
-    const tweet = await tweetRepository.create(text, userId);
+    const {text } = req.body;
+    // console.log(userId);
+    // console.log(text);
+    const tweet = await tweetRepository.create(text, req.userId);
     res.status(201).json(tweet);
     getSocketIO().emit('tweets',tweet);
 }
