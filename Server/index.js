@@ -24,7 +24,7 @@ app.use((error, req, res, next) => {
 //db.getConnection().then((connection) => console.log(connection));
 
 connectDB().then(() => {
-    //console.log('연결되었습니다');
+    console.log('연결되었습니다');
     const server = app.listen(config.host.port);
     initSocket(server);
 }).catch(console.error)
